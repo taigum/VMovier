@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		511617EE1F57D4CD00A82594 /* BMPlayerCustomControlView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511617ED1F57D4CD00A82594 /* BMPlayerCustomControlView2.swift */; };
 		51277A771F51286400CCF801 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51277A761F51286400CCF801 /* AppDelegate.swift */; };
 		51277A791F51286500CCF801 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51277A781F51286500CCF801 /* ViewController.swift */; };
 		51277A7C1F51286500CCF801 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51277A7A1F51286500CCF801 /* Main.storyboard */; };
@@ -21,12 +22,15 @@
 		51277AAE1F55610100CCF801 /* bannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51277AAD1F55610100CCF801 /* bannerView.swift */; };
 		5180FD861F56B04E0017C6C4 /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5180FD851F56B04E0017C6C4 /* VideoDetailViewController.swift */; };
 		5180FD881F57A35B0017C6C4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 5180FD871F57A35B0017C6C4 /* .gitignore */; };
+		5180FD8C1F57B0010017C6C4 /* BMCustomPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5180FD8B1F57B0010017C6C4 /* BMCustomPlayer.swift */; };
+		5180FD8E1F57B2A10017C6C4 /* BMPlayerCustomControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5180FD8D1F57B2A10017C6C4 /* BMPlayerCustomControlView.swift */; };
 		F6EE18BB24A042D0BA5F82FA /* Pods_VMovie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 367131F687DB3E54E1340463 /* Pods_VMovie.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		023E3621763DAE487AAB4EBA /* Pods-VMovie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VMovie.release.xcconfig"; path = "Pods/Target Support Files/Pods-VMovie/Pods-VMovie.release.xcconfig"; sourceTree = "<group>"; };
 		367131F687DB3E54E1340463 /* Pods_VMovie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VMovie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		511617ED1F57D4CD00A82594 /* BMPlayerCustomControlView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerCustomControlView2.swift; sourceTree = "<group>"; };
 		51277A731F51286400CCF801 /* VMovie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VMovie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51277A761F51286400CCF801 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		51277A781F51286500CCF801 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -43,6 +47,8 @@
 		51277AAD1F55610100CCF801 /* bannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bannerView.swift; sourceTree = "<group>"; };
 		5180FD851F56B04E0017C6C4 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
 		5180FD871F57A35B0017C6C4 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		5180FD8B1F57B0010017C6C4 /* BMCustomPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMCustomPlayer.swift; sourceTree = "<group>"; };
+		5180FD8D1F57B2A10017C6C4 /* BMPlayerCustomControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerCustomControlView.swift; sourceTree = "<group>"; };
 		CCA3809A3BFB195BF327D841 /* Pods-VMovie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VMovie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VMovie/Pods-VMovie.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,6 +106,7 @@
 				51277A781F51286500CCF801 /* ViewController.swift */,
 				51277AA31F55072800CCF801 /* DiscoverTabViewController.swift */,
 				5180FD851F56B04E0017C6C4 /* VideoDetailViewController.swift */,
+				511617ED1F57D4CD00A82594 /* BMPlayerCustomControlView2.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -109,6 +116,7 @@
 			children = (
 				51277A961F53EC0F00CCF801 /* Constants.swift */,
 				51277AAB1F5546DD00CCF801 /* IndexPost.swift */,
+				5180FD8B1F57B0010017C6C4 /* BMCustomPlayer.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -118,6 +126,7 @@
 			children = (
 				51277AA91F5545CA00CCF801 /* IndexPostViewCell.swift */,
 				51277AAD1F55610100CCF801 /* bannerView.swift */,
+				5180FD8D1F57B2A10017C6C4 /* BMPlayerCustomControlView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -272,6 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				511617EE1F57D4CD00A82594 /* BMPlayerCustomControlView2.swift in Sources */,
 				51277A791F51286500CCF801 /* ViewController.swift in Sources */,
 				51277A971F53EC0F00CCF801 /* Constants.swift in Sources */,
 				51277AA41F55072800CCF801 /* DiscoverTabViewController.swift in Sources */,
@@ -280,7 +290,9 @@
 				51277AAE1F55610100CCF801 /* bannerView.swift in Sources */,
 				51277A771F51286400CCF801 /* AppDelegate.swift in Sources */,
 				51277AAA1F5545CA00CCF801 /* IndexPostViewCell.swift in Sources */,
+				5180FD8C1F57B0010017C6C4 /* BMCustomPlayer.swift in Sources */,
 				51277AAC1F5546DD00CCF801 /* IndexPost.swift in Sources */,
+				5180FD8E1F57B2A10017C6C4 /* BMPlayerCustomControlView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

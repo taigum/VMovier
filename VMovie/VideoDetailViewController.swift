@@ -8,23 +8,45 @@
 
 import UIKit
 import BMPlayer
+import NVActivityIndicatorView
+
+func delay(_ seconds: Double, completion:@escaping ()->()) {
+    let popTime = DispatchTime.now() + Double(Int64( Double(NSEC_PER_SEC) * seconds )) / Double(NSEC_PER_SEC)
+    
+    DispatchQueue.main.asyncAfter(deadline: popTime) {
+        completion()
+    }
+}
 
 class VideoDetailViewController: UIViewController {
 
+    @IBOutlet weak var player: BMPlayer!
+    
+    var index: IndexPath!
+    
+    var changeButton = UIButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        var player = BMPlayer()
-        view.addSubview(player)
-        player.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view).offset(20)
-            make.left.right.equalTo(self.view)
-            // Note here, the aspect ratio 16:9 priority is lower than 1000 on the line, because the 4S iPhone aspect ratio is not 16:9
-            make.height.equalTo(player.snp.width).multipliedBy(9.0/16.0).priority(750)
-        }
-        // Back button event
-        player.backBlock = { [unowned self] in
+
+        player.backBlock = { [unowned self] (isFullScreen) in
+            if isFullScreen == true {
+                return
+            }
             let _ = self.navigationController?.popViewController(animated: true)
         }
+        
+        let res0 = BMPlayerResourceDefinition(url: URL(string: "http://baobab.wdjcdn.com/1457162012752491010143.mp4")!,
+                                              definition: "高清")
+        let res1 = BMPlayerResourceDefinition(url: URL(string: "http://baobab.wdjcdn.com/1457162012752491010143.mp4")!,
+                                              definition: "标清")
+        
+        let asset = BMPlayerResource(name: "周末号外丨中国第一高楼",
+                                     definitions: [res0, res1],
+                                     cover: URL(string: "http://img.wdjimg.com/image/video/447f973848167ee5e44b67c8d4df9839_0_0.jpeg"))
+        
+        player.setVideo(resource: asset)
+    
     }
 
     override func didReceiveMemoryWarning() {
