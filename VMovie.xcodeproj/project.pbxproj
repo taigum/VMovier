@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		511617EE1F57D4CD00A82594 /* BMPlayerCustomControlView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511617ED1F57D4CD00A82594 /* BMPlayerCustomControlView2.swift */; };
 		51277A771F51286400CCF801 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51277A761F51286400CCF801 /* AppDelegate.swift */; };
 		51277A791F51286500CCF801 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51277A781F51286500CCF801 /* ViewController.swift */; };
 		51277A7C1F51286500CCF801 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51277A7A1F51286500CCF801 /* Main.storyboard */; };
@@ -30,7 +29,6 @@
 /* Begin PBXFileReference section */
 		023E3621763DAE487AAB4EBA /* Pods-VMovie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VMovie.release.xcconfig"; path = "Pods/Target Support Files/Pods-VMovie/Pods-VMovie.release.xcconfig"; sourceTree = "<group>"; };
 		367131F687DB3E54E1340463 /* Pods_VMovie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VMovie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		511617ED1F57D4CD00A82594 /* BMPlayerCustomControlView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerCustomControlView2.swift; sourceTree = "<group>"; };
 		51277A731F51286400CCF801 /* VMovie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VMovie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51277A761F51286400CCF801 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		51277A781F51286500CCF801 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -106,7 +104,6 @@
 				51277A781F51286500CCF801 /* ViewController.swift */,
 				51277AA31F55072800CCF801 /* DiscoverTabViewController.swift */,
 				5180FD851F56B04E0017C6C4 /* VideoDetailViewController.swift */,
-				511617ED1F57D4CD00A82594 /* BMPlayerCustomControlView2.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -281,7 +278,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				511617EE1F57D4CD00A82594 /* BMPlayerCustomControlView2.swift in Sources */,
 				51277A791F51286500CCF801 /* ViewController.swift in Sources */,
 				51277A971F53EC0F00CCF801 /* Constants.swift in Sources */,
 				51277AA41F55072800CCF801 /* DiscoverTabViewController.swift in Sources */,
@@ -342,6 +338,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEBUG_ACTIVITY_MODE = "";
+				"DEBUG_ACTIVITY_MODE[sdk=iphonesimulator*]" = disable;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -361,6 +359,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
+				"MTL_ENABLE_DEBUG_INFO[arch=*]" = NO;
+				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -392,6 +392,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEBUG_ACTIVITY_MODE = "";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -405,6 +406,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;

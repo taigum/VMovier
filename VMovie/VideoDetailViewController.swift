@@ -9,6 +9,9 @@
 import UIKit
 import BMPlayer
 import NVActivityIndicatorView
+import Alamofire
+import SwiftyJSON
+import Kingfisher
 
 func delay(_ seconds: Double, completion:@escaping ()->()) {
     let popTime = DispatchTime.now() + Double(Int64( Double(NSEC_PER_SEC) * seconds )) / Double(NSEC_PER_SEC)
@@ -22,33 +25,64 @@ class VideoDetailViewController: UIViewController {
 
     @IBOutlet weak var player: BMPlayer!
     
+    @IBOutlet weak var videoWebView: UIWebView!
     var index: IndexPath!
-    
     var changeButton = UIButton()
+    var postId: Int!
+    var requestURL: String!
+
+    var allVideo = [BMPlayerResourceDefinition]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         player.backBlock = { [unowned self] (isFullScreen) in
             if isFullScreen == true {
                 return
             }
             let _ = self.navigationController?.popViewController(animated: true)
         }
-        
-        let res0 = BMPlayerResourceDefinition(url: URL(string: "http://baobab.wdjcdn.com/1457162012752491010143.mp4")!,
-                                              definition: "高清")
-        let res1 = BMPlayerResourceDefinition(url: URL(string: "http://baobab.wdjcdn.com/1457162012752491010143.mp4")!,
-                                              definition: "标清")
-        
-        let asset = BMPlayerResource(name: "周末号外丨中国第一高楼",
-                                     definitions: [res0, res1],
-                                     cover: URL(string: "http://img.wdjimg.com/image/video/447f973848167ee5e44b67c8d4df9839_0_0.jpeg"))
-        
-        player.setVideo(resource: asset)
-    
+        self.getVideo()
+        self.setWebView()
     }
-
+    
+    func getVideo(){
+        
+        Alamofire.request("\(Constants.API_URL)/post/view?postid=\(String(postId))").responseJSON { response in
+            if let json = response.result.value{
+                let jsonObject = JSON(json)
+                for aVideo in jsonObject["data"]["content"]["video"]{
+                    for video1 in aVideo.1["progressive"]{
+                        
+                        let videourl = URL(string: video1.1["qiniu_url"].stringValue)
+                        let videodefinition = video1.1["profile_name"].stringValue
+                        let vVideo = BMPlayerResourceDefinition(url:videourl!,definition:videodefinition)
+                        self.allVideo.append(vVideo)
+                        
+                        let asset = BMPlayerResource(definitions: self.allVideo)
+                        self.player.setVideo(resource: asset)
+                    }
+                }
+            }
+        }
+    }
+    
+    func setWebView(){
+        let url = URL(string: self.requestURL)
+        if let unwrappedURL = url {
+            let request = URLRequest(url: unwrappedURL)
+            let session = URLSession.shared
+            
+            let task = session.dataTask(with: request) { (data,response,error) in
+                if error == nil {
+                    self.videoWebView.loadRequest(request)
+                } else {
+                    print("ERROR: \(String(describing: error))")
+                }
+            }
+            task.resume()
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

@@ -20,6 +20,7 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
 
     var imagesURLStrings = [String]()
     var dataSource = [IndexPost]()
+    var requestURL: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,19 +28,8 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
         self.postView.dataSource = self
         self.setBannerImage()
         self.getIndexPostList()
-//        self.navigationController?.isNavigationBarHidden = true
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        self.navigationController?.setNavigationBarHidden(true, animated: animated)
-//    }
-//
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        self.navigationController?.setNavigationBarHidden(false, animated: animated)
-//    }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataSource.count
     }
@@ -57,6 +47,8 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
         cell.cateName.text = Poster.cateName
         cell.duration.text = Poster.duration
         cell.title.text = Poster.title
+        cell.tag = Poster.postId
+        self.requestURL = Poster.requestURL
         if indexPath[1] == 0 {
             cell.dateLabel.isHidden = false
         }else{
@@ -84,15 +76,17 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
         return CGSize(width: CGFloat(screenWidth), height: CGFloat(255))
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if (segue.identifier == "showVideo") {
-//            let viewController = segue.destination as! VideoDetailViewController
-//            self.navigationController?.pushViewController(viewController, animated: true)
-////            let cell = sender as? CategoryCell
-////            viewController.categoryId = cell?.tag
-////            viewController.hidesBottomBarWhenPushed = true
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showVideo") {
+            let viewController = segue.destination as! VideoDetailViewController
+            let cell = sender as? IndexPostViewCell
+            viewController.postId = cell?.tag
+            viewController.requestURL = self.requestURL
+            let index = self.dataSource.index(where: {$0.postId==cell?.tag})
+            self.requestURL = self.dataSource[index!].requestURL
+            viewController.requestURL = self.requestURL
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -120,9 +114,10 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
                     let duration = aPost.1["duration"].intValue
                     let minute = duration/1000/60
                     let second = (duration/1000)%60
-                    
                     let postDuration = "\(minute)′\(second)″"
-                    let post = IndexPost(postCover: postCover,cateName:postCateName,duration:postDuration,title:postTitle)
+                    let postId = aPost.1["postid"].intValue
+                    let requestURL = aPost.1["request_url"].stringValue
+                    let post = IndexPost(postCover: postCover,cateName:postCateName,duration:postDuration,title:postTitle,postId:postId,requestURL:requestURL)
                     
                     self.dataSource.append(post)
                 }

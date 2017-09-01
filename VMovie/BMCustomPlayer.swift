@@ -11,6 +11,7 @@ import BMPlayer
 
 class BMCustomPlayer: BMPlayer {
     class override func storyBoardCustomControl() -> BMPlayerControlView? {
+        
         return BMPlayerCustomControlView()
     }
 }
