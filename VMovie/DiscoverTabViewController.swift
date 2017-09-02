@@ -19,8 +19,22 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
     @IBOutlet weak var postView: UICollectionView!
 
     var imagesURLStrings = [String]()
+    struct bannerImage {
+        var bannerType: String
+        var bannerParam: String
+    }
+    var bannerImageData = [bannerImage]()
     var dataSource = [IndexPost]()
     var requestURL: String!
+    var titleLabel:UILabel = {
+        let label = UILabel(frame: CGRect(x:0, y: 0, width: UIScreen.main.bounds.width , height: 100))
+        label.textAlignment = .center
+        label.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        label.textColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
+        label.numberOfLines = 0
+        label.text = "hhhdshdbsj"
+        return label
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +44,17 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
         self.getIndexPostList()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+        super.viewWillDisappear(animated)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+        
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataSource.count
     }
@@ -50,7 +75,7 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
         cell.tag = Poster.postId
         self.requestURL = Poster.requestURL
         if indexPath[1] == 0 {
-            cell.dateLabel.isHidden = false
+            cell.addSubview(self.titleLabel)
         }else{
             cell.dateLabel.isHidden = true
         }
@@ -63,14 +88,24 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath as IndexPath) as! bannerView
             headerView.bannerView.imagePaths = self.imagesURLStrings
+            headerView.bannerView.lldidSelectItemAtIndex = { index in
+                
+                self.handleBannerView(index)
+            }
             return headerView
         default:
             assert(false, "Unexpected element kind")
         }
     }
     
+    func handleBannerView(_ index:Int){
+        print("当前点击图片的位置为:\(index)")
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let BannerWebViewController = storyBoard.instantiateViewController(withIdentifier: "BannerWebViewController") as! BannerWebViewController
+        self.navigationController?.pushViewController(BannerWebViewController, animated: true)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
         return CGSize(width: CGFloat(screenWidth), height: CGFloat(255))
@@ -98,6 +133,9 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
                 let jsonObject = JSON(json)
                 for aBanner in jsonObject["data"] {
                     self.imagesURLStrings.append(aBanner.1["image"].stringValue)
+                    let bannertype = aBanner.1["extra_data"]["app_banner_type"].stringValue
+                    let bannerparam = aBanner.1["extra_data"]["app_banner_param"].stringValue
+                    print("bannerType:\(bannertype)")
                 }
             }
         }

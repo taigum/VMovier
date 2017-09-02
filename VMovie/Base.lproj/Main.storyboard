@@ -20,11 +20,13 @@
                         <viewControllerLayoutGuide type="bottom" id="KVZ-Kl-5FE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="qJq-V6-rJJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="e6C-86-TDy"/>
+                    <navigationItem key="navigationItem" id="e6C-86-TDy">
+                        <barButtonItem key="backBarButtonItem" title=" " id="6eV-D0-ea4"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Zu-gc-BVp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -63,7 +65,7 @@
             </objects>
             <point key="canvasLocation" x="1684" y="-569"/>
         </scene>
-        <!--首页-->
+        <!--Discover Tab View Controller-->
         <scene sceneID="bhM-u4-DB3">
             <objects>
                 <viewController restorationIdentifier="DiscoverTabViewController" storyboardIdentifier="DiscoverTabViewController" id="az2-Hh-jsh" customClass="DiscoverTabViewController" customModule="VMovie" customModuleProvider="target" sceneMemberID="viewController">
@@ -224,7 +226,9 @@
                             <constraint firstItem="Vl1-8J-9Qj" firstAttribute="top" secondItem="1dQ-V3-Zo3" secondAttribute="bottom" constant="50" id="ydw-ew-GPq"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="首页" id="1hF-Wl-WXd"/>
+                    <navigationItem key="navigationItem" id="1hF-Wl-WXd">
+                        <barButtonItem key="backBarButtonItem" title=" " id="CXX-s0-XjU"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="postView" destination="Vl1-8J-9Qj" id="ctc-d5-TNr"/>
                     </connections>
@@ -277,14 +281,46 @@
             </objects>
             <point key="canvasLocation" x="3362.4000000000001" y="123.68815592203899"/>
         </scene>
+        <!--Banner Web View Controller-->
+        <scene sceneID="RK7-cN-qXL">
+            <objects>
+                <viewController restorationIdentifier="BannerWebViewController" storyboardIdentifier="BannerWebViewController" id="ZbD-YJ-9zN" customClass="BannerWebViewController" customModule="VMovie" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oLe-PY-ddd"/>
+                        <viewControllerLayoutGuide type="bottom" id="bOg-Wc-YMM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6wA-Hp-D8T">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xle-qo-4Q0">
+                                <rect key="frame" x="166" y="323" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JXa-sr-ZQV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4188" y="123.68815592203899"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="A8X-ML-mfl">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iH9-XC-34x" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ma6-1K-bxv">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="ma6-1K-bxv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -303,6 +339,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eme-ag-GiC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

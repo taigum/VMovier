@@ -17,9 +17,7 @@ class bannerView: UICollectionReusableView {
         self.bannerView.imageViewContentMode = .scaleToFill
         self.bannerView.pageControlPosition = .left
         self.bannerView.customPageControlStyle = .pill
-        self.bannerView.lldidSelectItemAtIndex = { index in
-            print("当前点击图片的位置为:\(index)")
-        }
+        
         self.bannerView.customPageControlInActiveTintColor = UIColor.lightGray
         self.bannerView.pageControlBottom = 20
         scrollView.addSubview(bannerView)

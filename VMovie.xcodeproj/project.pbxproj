@@ -19,6 +19,7 @@
 		51277AAA1F5545CA00CCF801 /* IndexPostViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51277AA91F5545CA00CCF801 /* IndexPostViewCell.swift */; };
 		51277AAC1F5546DD00CCF801 /* IndexPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51277AAB1F5546DD00CCF801 /* IndexPost.swift */; };
 		51277AAE1F55610100CCF801 /* bannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51277AAD1F55610100CCF801 /* bannerView.swift */; };
+		517E6AF41F59603500830C47 /* BannerWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517E6AF31F59603500830C47 /* BannerWebViewController.swift */; };
 		5180FD861F56B04E0017C6C4 /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5180FD851F56B04E0017C6C4 /* VideoDetailViewController.swift */; };
 		5180FD881F57A35B0017C6C4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 5180FD871F57A35B0017C6C4 /* .gitignore */; };
 		5180FD8C1F57B0010017C6C4 /* BMCustomPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5180FD8B1F57B0010017C6C4 /* BMCustomPlayer.swift */; };
@@ -43,6 +44,7 @@
 		51277AA91F5545CA00CCF801 /* IndexPostViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexPostViewCell.swift; sourceTree = "<group>"; };
 		51277AAB1F5546DD00CCF801 /* IndexPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexPost.swift; sourceTree = "<group>"; };
 		51277AAD1F55610100CCF801 /* bannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bannerView.swift; sourceTree = "<group>"; };
+		517E6AF31F59603500830C47 /* BannerWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerWebViewController.swift; sourceTree = "<group>"; };
 		5180FD851F56B04E0017C6C4 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
 		5180FD871F57A35B0017C6C4 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		5180FD8B1F57B0010017C6C4 /* BMCustomPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMCustomPlayer.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			children = (
 				51277A9D1F540D5800CCF801 /* ListViewController.swift */,
 				51277A781F51286500CCF801 /* ViewController.swift */,
+				517E6AF31F59603500830C47 /* BannerWebViewController.swift */,
 				51277AA31F55072800CCF801 /* DiscoverTabViewController.swift */,
 				5180FD851F56B04E0017C6C4 /* VideoDetailViewController.swift */,
 			);
@@ -285,6 +288,7 @@
 				5180FD861F56B04E0017C6C4 /* VideoDetailViewController.swift in Sources */,
 				51277AAE1F55610100CCF801 /* bannerView.swift in Sources */,
 				51277A771F51286400CCF801 /* AppDelegate.swift in Sources */,
+				517E6AF41F59603500830C47 /* BannerWebViewController.swift in Sources */,
 				51277AAA1F5545CA00CCF801 /* IndexPostViewCell.swift in Sources */,
 				5180FD8C1F57B0010017C6C4 /* BMCustomPlayer.swift in Sources */,
 				51277AAC1F5546DD00CCF801 /* IndexPost.swift in Sources */,

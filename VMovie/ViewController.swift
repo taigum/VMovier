@@ -16,7 +16,7 @@ class ViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = true
+        
         let tc = TabPageViewController.create()
         let vc1 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DiscoverTabViewController")
         vc1.view.backgroundColor = UIColor.white
@@ -37,7 +37,7 @@ class ViewController: UIViewController {
         tc.view.frame = view.bounds
         tc.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

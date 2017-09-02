@@ -8,41 +8,42 @@
 
 import UIKit
 import BMPlayer
-
+import NVActivityIndicatorView
 class BMPlayerCustomControlView: BMPlayerControlView {
     
-    var playbackRateButton = UIButton(type: .custom)
+    var playShareButton = UIButton(type: .custom)
     var playRate: Float = 1.0
     
-    var rotateButton = UIButton(type: .custom)
-    var rotateCount: CGFloat = 0
+    var downloadButton = UIButton(type: .custom)
+
     
     /**
      Override if need to customize UI components
      */
     override func customizeUIComponents() {
         mainMaskView.backgroundColor   = UIColor.clear
-        topMaskView.backgroundColor    = UIColor.black.withAlphaComponent(0.4)
+        BMPlayerConf.loaderType  = NVActivityIndicatorType.ballSpinFadeLoader
+        topMaskView.backgroundColor    = UIColor.black.withAlphaComponent(0)
         bottomMaskView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         timeSlider.setThumbImage(UIImage(named: "custom_slider_thumb"), for: .normal)
         
-        topMaskView.addSubview(playbackRateButton)
-        playbackRateButton.setImage(UIImage(named:"share"), for: .normal)
-        playbackRateButton.addTarget(self, action: #selector(onShareMovieButtonPressed), for: .touchUpInside)
-        playbackRateButton.imageEdgeInsets = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
-        playbackRateButton.isHidden = true
+        topMaskView.addSubview(playShareButton)
+        playShareButton.setImage(UIImage(named:"share"), for: .normal)
+        playShareButton.addTarget(self, action: #selector(onShareMovieButtonPressed), for: .touchUpInside)
+        playShareButton.imageEdgeInsets = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
+        playShareButton.isHidden = true
 
-        playbackRateButton.snp.makeConstraints {
+        playShareButton.snp.makeConstraints {
             $0.right.equalTo(topMaskView.snp.right).offset(-150)
             $0.centerY.equalTo(titleLabel.snp.top).offset(5)
         }
         
-        topMaskView.addSubview(rotateButton)
-        rotateButton.setImage(UIImage(named: "download"), for: .normal)
-        rotateButton.addTarget(self, action: #selector(onRotateButtonPressed), for: .touchUpInside)
-        rotateButton.isHidden = true
-        rotateButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        rotateButton.snp.makeConstraints {
+        topMaskView.addSubview(downloadButton)
+        downloadButton.setImage(UIImage(named: "download"), for: .normal)
+        downloadButton.addTarget(self, action: #selector(onRotateButtonPressed), for: .touchUpInside)
+        downloadButton.isHidden = true
+        downloadButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        downloadButton.snp.makeConstraints {
             $0.right.equalTo(topMaskView.snp.right).offset(-100)
             $0.centerY.equalTo(titleLabel.snp.top).offset(5)
         }
@@ -50,8 +51,8 @@ class BMPlayerCustomControlView: BMPlayerControlView {
     
     override func updateUI(_ isForFullScreen: Bool) {
         super.updateUI(isForFullScreen)
-        playbackRateButton.isHidden = !isForFullScreen
-        rotateButton.isHidden = !isForFullScreen
+        playShareButton.isHidden = !isForFullScreen
+        downloadButton.isHidden = !isForFullScreen
         if let layer = player?.playerLayer {
             layer.frame = player!.bounds
         }

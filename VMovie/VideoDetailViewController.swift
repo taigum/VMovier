@@ -24,8 +24,8 @@ func delay(_ seconds: Double, completion:@escaping ()->()) {
 class VideoDetailViewController: UIViewController {
 
     @IBOutlet weak var player: BMPlayer!
-    
     @IBOutlet weak var videoWebView: UIWebView!
+    
     var index: IndexPath!
     var changeButton = UIButton()
     var postId: Int!
@@ -43,6 +43,16 @@ class VideoDetailViewController: UIViewController {
         }
         self.getVideo()
         self.setWebView()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+        super.viewWillDisappear(animated)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     func getVideo(){
