@@ -13,11 +13,10 @@ import SwiftyJSON
 import Kingfisher
 
 class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-    
-    
-    
+
     @IBOutlet weak var postView: UICollectionView!
 
+    @IBOutlet weak var loading: UIActivityIndicatorView!
     var imagesURLStrings = [String]()
     struct bannerImage {
         var bannerType: String
@@ -26,13 +25,14 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
     var bannerImageData = [bannerImage]()
     var dataSource = [IndexPost]()
     var requestURL: String!
+    var lastID: String!
+    
     var titleLabel:UILabel = {
-        let label = UILabel(frame: CGRect(x:0, y: 0, width: UIScreen.main.bounds.width , height: 100))
+        let label = UILabel(frame: CGRect(x:0, y: 0, width: UIScreen.main.bounds.width , height: 60))
         label.textAlignment = .center
         label.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         label.textColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
         label.numberOfLines = 0
-        label.text = "hhhdshdbsj"
         return label
     }()
     
@@ -42,19 +42,20 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
         self.postView.dataSource = self
         self.setBannerImage()
         self.getIndexPostList()
+        self.loading.isHidden = true
+        
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = false
-        super.viewWillDisappear(animated)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
-        
     }
     
+//    override func viewWillDisappear(_ animated: Bool) {
+//        self.navigationController?.navigationBar.isHidden = false
+//        super.viewWillDisappear(animated)
+//    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataSource.count
     }
@@ -64,7 +65,6 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("indexPath:\(indexPath[1])")
         let cell = self.postView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! IndexPostViewCell
         let Poster = dataSource[indexPath.row]
         let postCoverUrl = URL(string: Poster.postCover)
@@ -76,14 +76,12 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
         self.requestURL = Poster.requestURL
         if indexPath[1] == 0 {
             cell.addSubview(self.titleLabel)
-        }else{
-            cell.dateLabel.isHidden = true
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
+
         switch kind {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath as IndexPath) as! bannerView
@@ -98,19 +96,49 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
         }
     }
     
-    func handleBannerView(_ index:Int){
-        print("当前点击图片的位置为:\(index)")
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let BannerWebViewController = storyBoard.instantiateViewController(withIdentifier: "BannerWebViewController") as! BannerWebViewController
-        self.navigationController?.pushViewController(BannerWebViewController, animated: true)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
-        return CGSize(width: CGFloat(screenWidth), height: CGFloat(255))
+        if indexPath[1] == 0 {
+            return CGSize(width: screenWidth, height: (screenWidth/1.5)+60)
+        }else{
+            return CGSize(width: CGFloat(screenWidth), height: screenWidth/1.5)
+        }
+        
+    }
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let lastElement = dataSource.count - 1
+        if indexPath.row == lastElement {
+            loading.isHidden = false
+            loading.startAnimating()
+            self.getPreVideo()
+        }else{
+            loading.isHidden = true
+        }
     }
     
+    
+    
+    func handleBannerView(_ index:Int){
+        if bannerImageData[index].bannerType == "1" {
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let BannerWebViewController = storyBoard.instantiateViewController(withIdentifier: "BannerWebViewController") as! BannerWebViewController
+            BannerWebViewController.bannerParam = bannerImageData[index].bannerParam
+            self.navigationController?.pushViewController(BannerWebViewController, animated: true)
+        }else if bannerImageData[index].bannerType == "2" {
+            goToVideoDetail(bannerImageData[index].bannerParam)
+        }
+    }
+    
+    func goToVideoDetail(_ bannerParam: String) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let VideoDetailViewController = storyBoard.instantiateViewController(withIdentifier: "VideoDetailViewController") as! VideoDetailViewController
+        VideoDetailViewController.postId = Int(bannerParam)
+        VideoDetailViewController.requestURL = "http://app.vmoiver.com/\(bannerParam)?qingapp=app_new"
+        self.navigationController?.pushViewController(VideoDetailViewController, animated: true)
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showVideo") {
             let viewController = segue.destination as! VideoDetailViewController
@@ -135,17 +163,21 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
                     self.imagesURLStrings.append(aBanner.1["image"].stringValue)
                     let bannertype = aBanner.1["extra_data"]["app_banner_type"].stringValue
                     let bannerparam = aBanner.1["extra_data"]["app_banner_param"].stringValue
-                    print("bannerType:\(bannertype)")
+                    let bannerData = bannerImage(bannerType: bannertype,bannerParam:bannerparam)
+                    self.bannerImageData.append(bannerData)
                 }
+                self.postView.reloadData()
             }
         }
     }
     
     func getIndexPostList(){
-        Alamofire.request("\(Constants.API_URL)/index/getIndexPosts").responseJSON { response in
+        Alamofire.request("\(Constants.API_URL)/index/index").responseJSON { response in
             if let json = response.result.value{
                 let jsonObject = JSON(json)
-                for aPost in jsonObject["data"]["list"] {
+                self.titleLabel.text = jsonObject["data"]["today"]["selection_title"].stringValue
+                self.lastID = jsonObject["data"]["today"]["lastid"].stringValue
+                for aPost in jsonObject["data"]["today"]["list"] {
                     let postCover = aPost.1["image"].stringValue
                     let postCateName = aPost.1["cate"][0]["catename"].stringValue
                     let postTitle = aPost.1["title"].stringValue
@@ -159,6 +191,29 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
                     
                     self.dataSource.append(post)
                 }
+                self.postView.reloadData()
+            }
+        }
+    }
+    func getPreVideo() {
+        Alamofire.request("\(Constants.API_URL)/index/getIndexPosts/lastid/\(self.lastID!)").responseJSON{ response in
+            if let json = response.result.value{
+                let jsonObject = JSON(json)
+                self.lastID = jsonObject["data"]["lastid"].stringValue
+                for aPost in jsonObject["data"]["list"] {
+                    let postCover = aPost.1["image"].stringValue
+                    let postCateName = aPost.1["cate"][0]["catename"].stringValue
+                    let postTitle = aPost.1["title"].stringValue
+                    let duration = aPost.1["duration"].intValue
+                    let minute = duration/1000/60
+                    let second = (duration/1000)%60
+                    let postDuration = "\(minute)′\(second)″"
+                    let postId = aPost.1["postid"].intValue
+                    let requestURL = aPost.1["request_url"].stringValue
+                    let post = IndexPost(postCover: postCover,cateName:postCateName,duration:postDuration,title:postTitle,postId:postId,requestURL:requestURL)
+                    self.dataSource.append(post)
+                }
+                self.loading.stopAnimating()
                 self.postView.reloadData()
             }
         }

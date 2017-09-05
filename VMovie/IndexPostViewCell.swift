@@ -10,9 +10,6 @@ import UIKit
 
 class IndexPostViewCell: UICollectionViewCell {
     @IBOutlet weak var postCover: UIImageView!
-    
-    @IBOutlet weak var saca: UICollectionView!
-    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var duration: UILabel!
     @IBOutlet weak var cateName: UILabel!

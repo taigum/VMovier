@@ -9,11 +9,30 @@
 import UIKit
 
 class BannerWebViewController: UIViewController {
-
+    
+    @IBOutlet weak var bannerWebView: UIWebView!
+    var bannerParam: String!
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        //self.navigationController?.navigationBar.tintColor = .white
+        let url = URL(string: self.bannerParam)
+        if let unwrappedURL = url {
+            let request = URLRequest(url: unwrappedURL)
+            let session = URLSession.shared
+            
+            let task = session.dataTask(with: request) { (data,response,error) in
+                if error == nil {
+                    self.bannerWebView.loadRequest(request)
+                } else {
+                    print("ERROR: \(String(describing: error))")
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     override func didReceiveMemoryWarning() {

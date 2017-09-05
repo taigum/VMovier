@@ -16,11 +16,10 @@ class ViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let tc = TabPageViewController.create()
         let vc1 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DiscoverTabViewController")
         vc1.view.backgroundColor = UIColor.white
-        let vc2 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ListViewController")
+        let vc2 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChannelViewController")
         tc.tabItems = [(vc1, "发现"), (vc2, "频道")]
         var option = TabPageOption()
         option.tabWidth = view.frame.width / CGFloat(tc.tabItems.count)
