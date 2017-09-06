@@ -27,6 +27,8 @@
 		5180FD881F57A35B0017C6C4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 5180FD871F57A35B0017C6C4 /* .gitignore */; };
 		5180FD8C1F57B0010017C6C4 /* BMCustomPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5180FD8B1F57B0010017C6C4 /* BMCustomPlayer.swift */; };
 		5180FD8E1F57B2A10017C6C4 /* BMPlayerCustomControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5180FD8D1F57B2A10017C6C4 /* BMPlayerCustomControlView.swift */; };
+		51E412291F5EA64A0093C236 /* ChannelHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E412281F5EA64A0093C236 /* ChannelHeaderView.swift */; };
+		51E4122B1F5FED480093C236 /* SeriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E4122A1F5FED480093C236 /* SeriesViewController.swift */; };
 		F6EE18BB24A042D0BA5F82FA /* Pods_VMovie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 367131F687DB3E54E1340463 /* Pods_VMovie.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +57,8 @@
 		5180FD871F57A35B0017C6C4 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		5180FD8B1F57B0010017C6C4 /* BMCustomPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMCustomPlayer.swift; sourceTree = "<group>"; };
 		5180FD8D1F57B2A10017C6C4 /* BMPlayerCustomControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerCustomControlView.swift; sourceTree = "<group>"; };
+		51E412281F5EA64A0093C236 /* ChannelHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelHeaderView.swift; sourceTree = "<group>"; };
+		51E4122A1F5FED480093C236 /* SeriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeriesViewController.swift; sourceTree = "<group>"; };
 		CCA3809A3BFB195BF327D841 /* Pods-VMovie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VMovie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VMovie/Pods-VMovie.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +117,7 @@
 				5180FD851F56B04E0017C6C4 /* VideoDetailViewController.swift */,
 				517909A21F5D40110064C951 /* ChannelViewController.swift */,
 				517909A81F5E49A40064C951 /* ChannelDetailViewController.swift */,
+				51E4122A1F5FED480093C236 /* SeriesViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -133,6 +138,7 @@
 			children = (
 				51277AA91F5545CA00CCF801 /* IndexPostViewCell.swift */,
 				51277AAD1F55610100CCF801 /* bannerView.swift */,
+				51E412281F5EA64A0093C236 /* ChannelHeaderView.swift */,
 				5180FD8D1F57B2A10017C6C4 /* BMPlayerCustomControlView.swift */,
 				517909A41F5D465B0064C951 /* ChannelCell.swift */,
 			);
@@ -304,7 +310,9 @@
 				5180FD8C1F57B0010017C6C4 /* BMCustomPlayer.swift in Sources */,
 				51277AAC1F5546DD00CCF801 /* IndexPost.swift in Sources */,
 				517909A31F5D40110064C951 /* ChannelViewController.swift in Sources */,
+				51E4122B1F5FED480093C236 /* SeriesViewController.swift in Sources */,
 				5180FD8E1F57B2A10017C6C4 /* BMPlayerCustomControlView.swift in Sources */,
+				51E412291F5EA64A0093C236 /* ChannelHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

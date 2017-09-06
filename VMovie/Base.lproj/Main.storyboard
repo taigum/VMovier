@@ -50,13 +50,13 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="QpQ-lj-1nx">
                                     <size key="itemSize" width="375" height="255"/>
-                                    <size key="headerReferenceSize" width="50" height="260"/>
+                                    <size key="headerReferenceSize" width="50" height="220"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="CsT-0R-BTO" customClass="IndexPostViewCell" customModule="VMovie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="260" width="375" height="255"/>
+                                        <rect key="frame" x="0.0" y="220" width="375" height="255"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="255"/>
@@ -144,14 +144,14 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="kSO-YY-XZT" customClass="bannerView" customModule="VMovie" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MLp-Ut-YJe">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
                                             <subviews>
                                                 <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="xVR-mk-C0u" customClass="LLCycleScrollView" customModule="LLCycleScrollView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
                                             </subviews>
@@ -279,7 +279,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JXa-sr-ZQV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4196" y="125"/>
+            <point key="canvasLocation" x="4161" y="125"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="A8X-ML-mfl">
@@ -304,6 +304,61 @@
             </objects>
             <point key="canvasLocation" x="29.600000000000001" y="125.4872563718141"/>
         </scene>
+        <!--Series View Controller-->
+        <scene sceneID="7Ol-we-dRH">
+            <objects>
+                <tableViewController restorationIdentifier="SeriesViewController" storyboardIdentifier="SeriesViewController" id="GSo-9B-RIg" customClass="SeriesViewController" customModule="VMovie" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Nfa-TM-JDT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="255" id="nmr-3w-1xY">
+                                <rect key="frame" x="0.0" y="28" width="375" height="255"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nmr-3w-1xY" id="Oqj-WO-N0H">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="255"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ur-ee-RM2">
+                                            <rect key="frame" x="0.0" y="8" width="375" height="255"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="梦想开始的地方" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V16-Af-3QG">
+                                            <rect key="frame" x="24" y="193" width="343" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="开学季励志专题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePG-bn-QM5">
+                                            <rect key="frame" x="24" y="222" width="351" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="专题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m0V-ep-S3p">
+                                            <rect key="frame" x="24" y="153" width="62" height="28"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="GSo-9B-RIg" id="p48-JG-CAU"/>
+                            <outlet property="delegate" destination="GSo-9B-RIg" id="uaT-Z1-Vm1"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tpw-5H-wpI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2756" y="-1353.3733133433284"/>
+        </scene>
         <!--Channel View Controller-->
         <scene sceneID="sQ8-a5-Ad5">
             <objects>
@@ -314,13 +369,13 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="qc0-Ac-T8S">
                             <size key="itemSize" width="180" height="175"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="200"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="72" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ChanelCell" id="cIE-vO-tmR" customClass="ChannelCell" customModule="VMovie" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="180" height="175"/>
+                                <rect key="frame" x="0.0" y="200" width="180" height="175"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="180" height="175"/>
@@ -346,6 +401,126 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="fbD-k7-mUt" customClass="ChannelHeaderView" customModule="VMovie" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DLf-P9-OX6">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hot" translatesAutoresizingMaskIntoConstraints="NO" id="jF6-nn-91F">
+                                            <rect key="frame" x="0.0" y="0.0" width="164" height="138"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="album" translatesAutoresizingMaskIntoConstraints="NO" id="sTg-d5-mmS">
+                                            <rect key="frame" x="203" y="0.0" width="164" height="138"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4dJ-Jn-ryc">
+                                            <rect key="frame" x="256" y="7" width="70" height="54"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="0.0" colorSpace="calibratedRGB"/>
+                                            <state key="normal">
+                                                <color key="titleShadowColor" red="1" green="0.5" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="handleAlbumChannel:" destination="fbD-k7-mUt" eventType="touchUpInside" id="sLw-hf-4w9"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#专题#" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hC-rS-Zl3">
+                                            <rect key="frame" x="203" y="28" width="164" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="18"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backstage" translatesAutoresizingMaskIntoConstraints="NO" id="KkY-zd-cwU">
+                                            <rect key="frame" x="0.0" y="101" width="164" height="138"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bK0-go-TL2">
+                                            <rect key="frame" x="51" y="128" width="70" height="54"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="0.0" colorSpace="calibratedRGB"/>
+                                            <state key="normal">
+                                                <color key="titleShadowColor" red="1" green="0.5" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="handleBackstageChannel:" destination="fbD-k7-mUt" eventType="touchUpInside" id="E6k-Lp-TF5"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#幕后#" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8iS-7y-cnv">
+                                            <rect key="frame" x="0.0" y="135" width="164" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="18"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="series" translatesAutoresizingMaskIntoConstraints="NO" id="mv8-e7-5m5">
+                                            <rect key="frame" x="203" y="62" width="164" height="138"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zBB-ad-Ugr">
+                                            <rect key="frame" x="256" y="135" width="70" height="54"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="0.0" colorSpace="calibratedRGB"/>
+                                            <state key="normal">
+                                                <color key="titleShadowColor" red="1" green="0.5" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="handleSeriesChannel:" destination="fbD-k7-mUt" eventType="touchUpInside" id="tCy-y4-aGd"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#系列#" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCX-EJ-4hX">
+                                            <rect key="frame" x="203" y="142" width="164" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="18"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#热门#" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMm-6G-Yiu">
+                                            <rect key="frame" x="0.0" y="36" width="164" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="18"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xTE-bt-eap">
+                                            <rect key="frame" x="47" y="14" width="70" height="54"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="0.0" colorSpace="calibratedRGB"/>
+                                            <state key="normal">
+                                                <color key="titleShadowColor" red="1" green="0.5" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="Tiu-B7-nrb" kind="show" identifier="showChannel" id="5Jz-WP-dDE"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="DLf-P9-OX6" firstAttribute="top" secondItem="fbD-k7-mUt" secondAttribute="top" id="6jI-rv-UE8"/>
+                                <constraint firstAttribute="trailing" secondItem="DLf-P9-OX6" secondAttribute="trailing" id="YCg-G4-3FF"/>
+                                <constraint firstAttribute="bottom" secondItem="DLf-P9-OX6" secondAttribute="bottom" id="YY4-kf-jKl"/>
+                                <constraint firstItem="DLf-P9-OX6" firstAttribute="leading" secondItem="fbD-k7-mUt" secondAttribute="leading" id="aWg-Q4-wEM"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="albumButton" destination="4dJ-Jn-ryc" id="F4o-Ro-oMO"/>
+                                <outlet property="albumImage" destination="sTg-d5-mmS" id="t1F-dR-MLP"/>
+                                <outlet property="albumLabel" destination="3hC-rS-Zl3" id="a9q-gh-sc6"/>
+                                <outlet property="backstageButton" destination="bK0-go-TL2" id="cH0-pO-Qmm"/>
+                                <outlet property="backstageImage" destination="KkY-zd-cwU" id="tte-iv-x7h"/>
+                                <outlet property="backstageLabel" destination="8iS-7y-cnv" id="A60-Cw-cnE"/>
+                                <outlet property="hotButtom" destination="xTE-bt-eap" id="uqW-kC-Ofk"/>
+                                <outlet property="hotImage" destination="jF6-nn-91F" id="A8W-PD-yv3"/>
+                                <outlet property="hotLabel" destination="dMm-6G-Yiu" id="6dq-tb-2e4"/>
+                                <outlet property="seriesButton" destination="zBB-ad-Ugr" id="Bhz-WY-g3w"/>
+                                <outlet property="seriesImage" destination="mv8-e7-5m5" id="WMl-J7-FXt"/>
+                                <outlet property="seriesLabel" destination="sCX-EJ-4hX" id="T0O-6I-SXV"/>
+                            </connections>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="ghJ-Hq-cw0" id="SUD-ap-oSl"/>
                             <outlet property="delegate" destination="ghJ-Hq-cw0" id="1OK-3z-9YU"/>
@@ -444,6 +619,7 @@
                                     <outlet property="duration" destination="NUG-fd-DnM" id="eEw-iv-WPU"/>
                                     <outlet property="postCover" destination="6Ox-Uq-A6c" id="wyC-2w-z7u"/>
                                     <outlet property="title" destination="A7F-GS-jWo" id="WM2-2G-T62"/>
+                                    <segue destination="gIB-cr-Fvf" kind="show" identifier="showChannelVideo" id="e9b-Ed-Iqb"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -502,7 +678,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="album" width="616" height="616"/>
+        <image name="backstage" width="616" height="616"/>
+        <image name="hot" width="616" height="616"/>
         <image name="s1" width="900" height="314"/>
         <image name="s3" width="1100" height="361"/>
+        <image name="series" width="616" height="616"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="5Jz-WP-dDE"/>
+        <segue reference="Cqk-vW-fil"/>
+    </inferredMetricsTieBreakers>
 </document>

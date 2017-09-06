@@ -17,17 +17,16 @@ class ChannelDetailViewController: UICollectionViewController,UICollectionViewDe
     @IBOutlet var channelDetailView: UICollectionView!
     
     var dataSource = [IndexPost]()
-    var cateID:Int!
     let screenWidth = UIScreen.main.bounds.width
-    
+    var refreshPage = 1
+    var navigateTitle:String!
+    var requestURL:String!
     override func viewDidLoad() {
         let activityData = ActivityData()
-        
         NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
         super.viewDidLoad()
         self.getChannelList()
-        channelDetailView.dataSource = self
-        channelDetailView.delegate = self
+        self.title = navigateTitle.replacingOccurrences(of: "#", with: "", options: NSString.CompareOptions.literal, range:nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,7 +42,7 @@ class ChannelDetailViewController: UICollectionViewController,UICollectionViewDe
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
     }
-    
+
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataSource.count
     }
@@ -71,12 +70,33 @@ class ChannelDetailViewController: UICollectionViewController,UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         return CGSize(width: screenWidth, height: screenWidth/1.5)
     }
     
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let lastElement = dataSource.count - 1
+        if indexPath.row == lastElement {
+            refreshPage+=1
+            self.getChannelList()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showChannelVideo") {
+            let viewController = segue.destination as! VideoDetailViewController
+            var requestURL:String!
+            let cell = sender as? IndexPostViewCell
+            viewController.postId = cell?.tag
+            viewController.requestURL = requestURL
+            let index = self.dataSource.index(where: {$0.postId==cell?.tag})
+            requestURL = self.dataSource[index!].requestURL
+            viewController.requestURL = requestURL
+        }
+    }
+    
     func getChannelList() {
-        Alamofire.request("\(Constants.API_URL)/post/getPostInCate?p=1&size=10&cateid=\(String(cateID))").responseJSON { response in
+
+        Alamofire.request("\(requestURL!)&p=\(String(refreshPage))").responseJSON { response in
             if let json = response.result.value{
                 let jsonObject = JSON(json)
                 for aVideo in jsonObject["data"]{

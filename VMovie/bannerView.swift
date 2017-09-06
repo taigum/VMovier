@@ -17,7 +17,6 @@ class bannerView: UICollectionReusableView {
         self.bannerView.imageViewContentMode = .scaleToFill
         self.bannerView.pageControlPosition = .left
         self.bannerView.customPageControlStyle = .pill
-        
         self.bannerView.customPageControlInActiveTintColor = UIColor.lightGray
         self.bannerView.pageControlBottom = 20
         scrollView.addSubview(bannerView)

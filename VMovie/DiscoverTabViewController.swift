@@ -26,7 +26,7 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
     var dataSource = [IndexPost]()
     var requestURL: String!
     var lastID: String!
-    
+    let screenWidth = UIScreen.main.bounds.width
     var titleLabel:UILabel = {
         let label = UILabel(frame: CGRect(x:0, y: 0, width: UIScreen.main.bounds.width , height: 60))
         label.textAlignment = .center
@@ -90,6 +90,7 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
                 
                 self.handleBannerView(index)
             }
+//            headerView.frame.size = CGSize(width: screenWidth,height:screenWidth/1.5)
             return headerView
         default:
             assert(false, "Unexpected element kind")

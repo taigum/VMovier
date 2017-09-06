@@ -11,8 +11,6 @@ import Alamofire
 import SwiftyJSON
 import Kingfisher
 
-//private let reuseIdentifier = "Cell"
-
 class ChannelViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
 
     @IBOutlet var ChanelView: UICollectionView!
@@ -29,6 +27,7 @@ class ChannelViewController: UICollectionViewController,UICollectionViewDelegate
         self.ChanelView.dataSource = self
         self.ChanelView.delegate = self
         self.getChannelList()
+        self.automaticallyAdjustsScrollViewInsets = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,10 +41,18 @@ class ChannelViewController: UICollectionViewController,UICollectionViewDelegate
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let viewController = segue.destination as! ChannelDetailViewController
         if (segue.identifier == "showChannelDetail") {
             let viewController = segue.destination as! ChannelDetailViewController
             let cell = sender as? ChannelCell
-            viewController.cateID = cell?.tag
+            var catename:String!
+            viewController.requestURL = "\(Constants.API_URL)/post/getPostInCate?size=10&cateid=\(String(describing: cell?.tag))"
+            let index = self.dataSource.index(where: {$0.channelID==cell?.tag})
+            catename = self.dataSource[index!].channelName
+            viewController.navigateTitle = catename
+        }else if segue.identifier == "showChannel" {
+            viewController.requestURL = "\(Constants.API_URL)/post/getPostByTab?size=10&tab=hot"
+            viewController.navigateTitle = "热门"
         }
     }
 
@@ -81,6 +88,34 @@ class ChannelViewController: UICollectionViewController,UICollectionViewDelegate
         return CGSize(width: screenWidth/2, height: screenWidth/2)
     }
     
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        switch kind {
+        case UICollectionElementKindSectionHeader:
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath as IndexPath) as! ChannelHeaderView
+            headerView.albumButton.addTarget(self, action: #selector(handleSeriesButton(_:)), for:.touchUpInside)
+            headerView.frame = CGRect(x:0,y:72,width:screenWidth,height:screenWidth)
+            return headerView
+        default:
+            assert(false, "Unexpected element kind")
+        }
+    }
+    func handleSeriesButton(_ sender : UIButton){
+        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SeriesViewController") as? SeriesViewController {
+            if let navigator = self.navigationController {
+                navigator.pushViewController(viewController, animated: true)
+            }
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize{
+        return CGSize(width: screenWidth, height: screenWidth)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    
+        return UIEdgeInsets(top: 72, left: 0, bottom: 0, right: 0)
+    }
+    
     func getChannelList() {
         Alamofire.request("\(Constants.API_URL)/cate/getList").responseJSON { response in
             if let json = response.result.value {
@@ -96,5 +131,4 @@ class ChannelViewController: UICollectionViewController,UICollectionViewDelegate
             }
         }
     }
-
 }
