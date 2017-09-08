@@ -84,29 +84,38 @@ class ChannelViewController: UICollectionViewController,UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         return CGSize(width: screenWidth/2, height: screenWidth/2)
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
         switch kind {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath as IndexPath) as! ChannelHeaderView
-            headerView.albumButton.addTarget(self, action: #selector(handleSeriesButton(_:)), for:.touchUpInside)
+            headerView.albumButton.addTarget(self, action: #selector(handleAlbumButton(_:)), for:.touchUpInside)
             headerView.frame = CGRect(x:0,y:72,width:screenWidth,height:screenWidth)
+            headerView.backstageButton.addTarget(self, action: #selector(handleBackstageButton(_:)), for:.touchUpInside)
             return headerView
         default:
             assert(false, "Unexpected element kind")
         }
     }
-    func handleSeriesButton(_ sender : UIButton){
-        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SeriesViewController") as? SeriesViewController {
+    
+    func handleAlbumButton(_ sender : UIButton){
+        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AlbumViewController") as? AlbumViewController {
             if let navigator = self.navigationController {
                 navigator.pushViewController(viewController, animated: true)
             }
         }
     }
+    
+    func handleBackstageButton(_ sender : UIButton){
+        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BackStageViewController") as? BackStageViewController {
+            if let navigator = self.navigationController {
+                navigator.pushViewController(viewController, animated: true)
+            }
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize{
         return CGSize(width: screenWidth, height: screenWidth)
     }

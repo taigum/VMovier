@@ -27,6 +27,7 @@ class ChannelDetailViewController: UICollectionViewController,UICollectionViewDe
         super.viewDidLoad()
         self.getChannelList()
         self.title = navigateTitle.replacingOccurrences(of: "#", with: "", options: NSString.CompareOptions.literal, range:nil)
+        self.channelDetailView.scrollsToTop = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -81,6 +82,17 @@ class ChannelDetailViewController: UICollectionViewController,UICollectionViewDe
         }
     }
     
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        switch kind {
+        case UICollectionElementKindSectionFooter:
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "footer", for: indexPath as IndexPath)
+            return headerView
+        default:
+            assert(false, "Unexpected element kind")
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showChannelVideo") {
             let viewController = segue.destination as! VideoDetailViewController
@@ -95,7 +107,6 @@ class ChannelDetailViewController: UICollectionViewController,UICollectionViewDe
     }
     
     func getChannelList() {
-
         Alamofire.request("\(requestURL!)&p=\(String(refreshPage))").responseJSON { response in
             if let json = response.result.value{
                 let jsonObject = JSON(json)

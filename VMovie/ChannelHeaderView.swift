@@ -44,19 +44,5 @@ class ChannelHeaderView: UICollectionReusableView {
         backstageButton.frame = CGRect(x:0,y:screenWidth/2,width: screenWidth/2,height:screenWidth/2)
         seriesButton.frame = CGRect(x:screenWidth/2,y:screenWidth/2,width: screenWidth/2,height:screenWidth/2)
     }
-
-    @IBAction func handleAlbumChannel(_ sender: Any) {
-
-//        print("click album channel")
-        
-    }
- 
-    @IBAction func handleBackstageChannel(_ sender: Any) {
-        print("click backstage channel")
-    }
-    
-    @IBAction func handleSeriesChannel(_ sender: Any) {
-        print("click series channel")
-    }
     
 }
