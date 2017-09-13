@@ -12,14 +12,7 @@ import NVActivityIndicatorView
 import Alamofire
 import SwiftyJSON
 import Kingfisher
-
-func delay(_ seconds: Double, completion:@escaping ()->()) {
-    let popTime = DispatchTime.now() + Double(Int64( Double(NSEC_PER_SEC) * seconds )) / Double(NSEC_PER_SEC)
-    
-    DispatchQueue.main.asyncAfter(deadline: popTime) {
-        completion()
-    }
-}
+import SnapKit
 
 class VideoDetailViewController: UIViewController {
 
@@ -30,7 +23,6 @@ class VideoDetailViewController: UIViewController {
     var changeButton = UIButton()
     var postId: Int!
     var requestURL: String!
-
     var allVideo = [BMPlayerResourceDefinition]()
     
     override func viewDidLoad() {
@@ -41,8 +33,8 @@ class VideoDetailViewController: UIViewController {
             }
             let _ = self.navigationController?.popViewController(animated: true)
         }
-        self.getVideo()
-        self.setWebView()
+        
+    
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -52,17 +44,19 @@ class VideoDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.getVideo()
+        self.setWebView()
         self.navigationController?.navigationBar.isHidden = true
     }
     
     func getVideo(){
-        
         Alamofire.request("\(Constants.API_URL)/post/view?postid=\(String(postId))").responseJSON { response in
             if let json = response.result.value{
                 let jsonObject = JSON(json)
                 for aVideo in jsonObject["data"]["content"]["video"]{
+                    let BMPlayer = BMPlayerCustomControlView()
+                    BMPlayer.videoURL = aVideo.1["qiniu_url"].stringValue
                     for video1 in aVideo.1["progressive"]{
-                        
                         let videourl = URL(string: video1.1["qiniu_url"].stringValue)
                         let videodefinition = video1.1["profile_name"].stringValue
                         let vVideo = BMPlayerResourceDefinition(url:videourl!,definition:videodefinition)

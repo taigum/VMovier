@@ -8,12 +8,14 @@
 
 import UIKit
 
-class BannerWebViewController: UIViewController {
+class BannerWebViewController: UIViewController,UIWebViewDelegate {
     
     @IBOutlet weak var bannerWebView: UIWebView!
     var bannerParam: String!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.bannerWebView.delegate = self
+        
         let url = URL(string: self.bannerParam)
         if let unwrappedURL = url {
             let request = URLRequest(url: unwrappedURL)
@@ -28,6 +30,12 @@ class BannerWebViewController: UIViewController {
             }
             task.resume()
         }
+    }
+
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        let title = bannerWebView.stringByEvaluatingJavaScript(from: "document.title")!
+        self.title = title
     }
     
     override func viewWillAppear(_ animated: Bool) {

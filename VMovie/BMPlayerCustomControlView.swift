@@ -9,17 +9,15 @@
 import UIKit
 import BMPlayer
 import NVActivityIndicatorView
+import Alamofire
+
 class BMPlayerCustomControlView: BMPlayerControlView {
     
     var playShareButton = UIButton(type: .custom)
     var playRate: Float = 1.0
-    
     var downloadButton = UIButton(type: .custom)
-
+    var videoURL:String?
     
-    /**
-     Override if need to customize UI components
-     */
     override func customizeUIComponents() {
         mainMaskView.backgroundColor   = UIColor.clear
         BMPlayerConf.loaderType  = NVActivityIndicatorType.ballSpinFadeLoader
@@ -40,7 +38,7 @@ class BMPlayerCustomControlView: BMPlayerControlView {
         
         topMaskView.addSubview(downloadButton)
         downloadButton.setImage(UIImage(named: "download"), for: .normal)
-        downloadButton.addTarget(self, action: #selector(onRotateButtonPressed), for: .touchUpInside)
+        downloadButton.addTarget(self, action: #selector(onDownloadButtonPressed), for: .touchUpInside)
         downloadButton.isHidden = true
         downloadButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         downloadButton.snp.makeConstraints {
@@ -62,7 +60,19 @@ class BMPlayerCustomControlView: BMPlayerControlView {
         print("share")
     }
     
-    func onRotateButtonPressed() {
+    func onDownloadButtonPressed() {
+        let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory)
+        print("videoURL:\(self.videoURL)")
+//        Alamofire.download(
+//            videoURL!,
+//            method: .get,
+//            encoding: JSONEncoding.default,
+//            headers: nil,
+//            to: destination).downloadProgress(closure: { (progress) in
+//                print("progress:\(progress)")
+//            }).response(completionHandler: { (DefaultDownloadResponse) in
+//                print("complete")
+//            })
         print("download")
     }
 }

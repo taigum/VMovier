@@ -13,6 +13,10 @@ import SwiftyJSON
 
 class SeriesViewController: UITableViewController {
 
+    @IBOutlet var seriesView: UITableView!
+    
+    var dataSource = [Series]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getSeries()
@@ -20,7 +24,6 @@ class SeriesViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -31,82 +34,55 @@ class SeriesViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
+        self.title = "系列"
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return dataSource.count
     }
 
     func getSeries(){
         Alamofire.request("\(Constants.API_URL)/series/getList?p=1&size=10").responseJSON { response in
             if let json = response.result.value{
                 let jsonObject = JSON(json)
-                for aAlbum in jsonObject["data"] {
-                    print("aAlbum:\(aAlbum)")
+                for aSeries in jsonObject["data"] {
+                    let image = aSeries.1["image"].stringValue
+                    let title = aSeries.1["title"].stringValue
+                    let update = "已更新至\(aSeries.1["update_to"])集"
+                    let follower = "\(aSeries.1["follower_num"]))人已订阅"
+                    let content = aSeries.1["content"].stringValue
+                    let ID = aSeries.1["seriesid"].intValue
+                    let SeriesList = Series(seriesCover:image,seriesTitle:title,seriesUpdate:update,seriesFollower:follower,seriesContent:content,seriesID:ID)
+                    self.dataSource.append(SeriesList)
                 }
+                self.seriesView.reloadData()
             }
         }
     }
     
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "seriesCell", for: indexPath) as! SeriesCell
+        let SeriesList = dataSource[indexPath.row]
+        let seriesCoverURL = URL(string: SeriesList.seriesCover)
+        cell.seriesCover.kf.setImage(with: seriesCoverURL)
+        cell.seriesTitle.text = SeriesList.seriesTitle
+        cell.seriesFollower.text = SeriesList.seriesFollower
+        cell.seriesUpdate.text = SeriesList.seriesUpdate
+        cell.seriesContent.text = SeriesList.seriesContent
+        cell.tag = SeriesList.seriesID
         return cell
     }
-    */
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let viewController = segue.destination as! SeriesDetailViewController
+        if (segue.identifier == "showSeriesDetail") {
+            let cell = sender as? SeriesCell
+            viewController.seriesID = cell?.tag
+        }
     }
-    */
-
 }

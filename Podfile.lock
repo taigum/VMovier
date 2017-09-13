@@ -16,6 +16,7 @@ PODS:
   - SnapKit (3.2.0)
   - SwiftyJSON (3.1.4)
   - TabPageViewController (0.2.7)
+  - WechatOpenSDK (1.7.9)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
@@ -24,6 +25,7 @@ DEPENDENCIES:
   - LLCycleScrollView
   - SwiftyJSON
   - TabPageViewController
+  - WechatOpenSDK
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
@@ -34,7 +36,8 @@ SPEC CHECKSUMS:
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   TabPageViewController: c37a1257a50c2b50712dde61bf499768eee95b67
+  WechatOpenSDK: 1fe7e3b07db860d6a936c3ff4a5aba6b890958d9
 
-PODFILE CHECKSUM: f8047b42a8e6a71f9a0f5eafd508738f680e5994
+PODFILE CHECKSUM: 3c0f951c0bec969abc5a6366398e533b1d5e4b97
 
 COCOAPODS: 1.2.1

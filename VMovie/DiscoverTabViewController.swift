@@ -15,8 +15,9 @@ import Kingfisher
 class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var postView: UICollectionView!
-
     @IBOutlet weak var loading: UIActivityIndicatorView!
+    
+    var sectionNumber:Int = 1
     var imagesURLStrings = [String]()
     struct bannerImage {
         var bannerType: String
@@ -61,11 +62,12 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return sectionNumber
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = self.postView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! IndexPostViewCell
+        print("sectionNumber:\(indexPath.section)")
         let Poster = dataSource[indexPath.row]
         let postCoverUrl = URL(string: Poster.postCover)
         cell.postCover.kf.setImage(with: postCoverUrl)
@@ -81,7 +83,6 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-
         switch kind {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath as IndexPath) as! bannerView
@@ -90,7 +91,6 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
                 
                 self.handleBannerView(index)
             }
-//            headerView.frame.size = CGSize(width: screenWidth,height:screenWidth/1.5)
             return headerView
         default:
             assert(false, "Unexpected element kind")
@@ -118,8 +118,6 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
             loading.isHidden = true
         }
     }
-    
-    
     
     func handleBannerView(_ index:Int){
         if bannerImageData[index].bannerType == "1" {
@@ -189,13 +187,14 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
                     let postId = aPost.1["postid"].intValue
                     let requestURL = aPost.1["request_url"].stringValue
                     let post = IndexPost(postCover: postCover,cateName:postCateName,duration:postDuration,title:postTitle,postId:postId,requestURL:requestURL)
-                    
+            
                     self.dataSource.append(post)
                 }
                 self.postView.reloadData()
             }
         }
     }
+    
     func getPreVideo() {
         Alamofire.request("\(Constants.API_URL)/index/getIndexPosts/lastid/\(self.lastID!)").responseJSON{ response in
             if let json = response.result.value{
@@ -214,6 +213,7 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
                     let post = IndexPost(postCover: postCover,cateName:postCateName,duration:postDuration,title:postTitle,postId:postId,requestURL:requestURL)
                     self.dataSource.append(post)
                 }
+                self.sectionNumber += 1
                 self.loading.stopAnimating()
                 self.postView.reloadData()
             }

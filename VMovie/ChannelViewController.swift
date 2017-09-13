@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import Kingfisher
+import TabPageViewController
 
 class ChannelViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
 
@@ -27,7 +28,6 @@ class ChannelViewController: UICollectionViewController,UICollectionViewDelegate
         self.ChanelView.dataSource = self
         self.ChanelView.delegate = self
         self.getChannelList()
-        self.automaticallyAdjustsScrollViewInsets = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,16 +43,12 @@ class ChannelViewController: UICollectionViewController,UICollectionViewDelegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let viewController = segue.destination as! ChannelDetailViewController
         if (segue.identifier == "showChannelDetail") {
-            let viewController = segue.destination as! ChannelDetailViewController
             let cell = sender as? ChannelCell
             var catename:String!
             viewController.requestURL = "\(Constants.API_URL)/post/getPostInCate?size=10&cateid=\(String(describing: cell?.tag))"
             let index = self.dataSource.index(where: {$0.channelID==cell?.tag})
             catename = self.dataSource[index!].channelName
             viewController.navigateTitle = catename
-        }else if segue.identifier == "showChannel" {
-            viewController.requestURL = "\(Constants.API_URL)/post/getPostByTab?size=10&tab=hot"
-            viewController.navigateTitle = "热门"
         }
     }
 
@@ -91,16 +87,36 @@ class ChannelViewController: UICollectionViewController,UICollectionViewDelegate
         switch kind {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath as IndexPath) as! ChannelHeaderView
-            headerView.albumButton.addTarget(self, action: #selector(handleAlbumButton(_:)), for:.touchUpInside)
             headerView.frame = CGRect(x:0,y:72,width:screenWidth,height:screenWidth)
-            headerView.backstageButton.addTarget(self, action: #selector(handleBackstageButton(_:)), for:.touchUpInside)
+            
+            let hotTapGesture = UITapGestureRecognizer(target: self, action: #selector(ChannelViewController.handleHotTapped(gesture:)))
+            headerView.hotImage.addGestureRecognizer(hotTapGesture)
+            
+            let albumTapGesture = UITapGestureRecognizer(target: self, action: #selector(ChannelViewController.handleAlbumTapped(gesture:)))
+            headerView.albumImage.addGestureRecognizer(albumTapGesture)
+            
+            let backstageTapGesture = UITapGestureRecognizer(target: self, action: #selector(ChannelViewController.handleBackstageTapped(gesture:)))
+            headerView.backstageImage.addGestureRecognizer(backstageTapGesture)
+            
+            let seriesTapGesture = UITapGestureRecognizer(target: self, action: #selector(ChannelViewController.handleSeriesTapped(gesture:)))
+            headerView.seriesImage.addGestureRecognizer(seriesTapGesture)
             return headerView
         default:
             assert(false, "Unexpected element kind")
         }
     }
     
-    func handleAlbumButton(_ sender : UIButton){
+    func handleHotTapped(gesture: UIGestureRecognizer){
+        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChannelDetailViewController") as? ChannelDetailViewController {
+            if let navigator = self.navigationController {
+                viewController.requestURL = "\(Constants.API_URL)/post/getPostByTab?size=10&tab=hot"
+                viewController.navigateTitle = "热门"
+                navigator.pushViewController(viewController, animated: true)
+            }
+        }
+    }
+    
+    func handleAlbumTapped(gesture: UIGestureRecognizer) {
         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AlbumViewController") as? AlbumViewController {
             if let navigator = self.navigationController {
                 navigator.pushViewController(viewController, animated: true)
@@ -108,8 +124,16 @@ class ChannelViewController: UICollectionViewController,UICollectionViewDelegate
         }
     }
     
-    func handleBackstageButton(_ sender : UIButton){
+    func handleBackstageTapped(gesture: UIGestureRecognizer){
         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BackStageViewController") as? BackStageViewController {
+            if let navigator = self.navigationController {
+                navigator.pushViewController(viewController, animated: true)
+            }
+        }
+    }
+    
+    func handleSeriesTapped(gesture: UIGestureRecognizer){
+        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SeriesViewController") as? SeriesViewController {
             if let navigator = self.navigationController {
                 navigator.pushViewController(viewController, animated: true)
             }
