@@ -51,11 +51,6 @@ class DiscoverTabViewController: UIViewController,UICollectionViewDelegate,UICol
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
     }
-    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        self.navigationController?.navigationBar.isHidden = false
-//        super.viewWillDisappear(animated)
-//    }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataSource.count

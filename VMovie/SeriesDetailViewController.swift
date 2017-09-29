@@ -7,14 +7,21 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+import Kingfisher
 
 class SeriesDetailViewController: UIViewController,UIWebViewDelegate {
     
-    var seriesID:Int!
-    
     @IBOutlet weak var seriesDetailView: UIWebView!
+    
+    var seriesID:Int!
+    var shareImageURL:URL!
+    var shareMessage:String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.getSeriesContent()
         self.seriesDetailView.delegate = self
         let requestString = "http://www.vmovier.com/series/\(String(seriesID))"
         seriesDetailView.frame = self.view.bounds
@@ -32,18 +39,13 @@ class SeriesDetailViewController: UIViewController,UIWebViewDelegate {
             }
             task.resume()
         }
-        let shareButton = UIButton(type: .custom)
-        shareButton.setImage(UIImage(named: "share"), for: .normal)
-        shareButton.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
-        shareButton.addTarget(self, action: #selector(addShare), for: .touchUpInside)
-        let item = UIBarButtonItem(customView: shareButton)
-        self.navigationItem.setRightBarButton(item, animated: true)
     }
 
     func addShare() {
-        let message = "Message goes here."
-        if let image = UIImage(named: "backstage") {
-            let vc = UIActivityViewController(activityItems: [image,message], applicationActivities: [])
+        let message = self.shareMessage
+        let data = try? Data(contentsOf: self.shareImageURL!)
+        if let image: UIImage = UIImage(data: data!) {
+            let vc = UIActivityViewController(activityItems: [image,message!], applicationActivities: [])
             present(vc, animated: true)
         }
     }
@@ -56,11 +58,16 @@ class SeriesDetailViewController: UIViewController,UIWebViewDelegate {
     func webViewDidFinishLoad(_ webView: UIWebView) {
         let title = seriesDetailView.stringByEvaluatingJavaScript(from: "document.title")!
         self.title = title
+        let shareButton = UIButton(type: .custom)
+        shareButton.setImage(UIImage(named: "share"), for: .normal)
+        shareButton.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+        shareButton.addTarget(self, action: #selector(addShare), for: .touchUpInside)
+        let item = UIBarButtonItem(customView: shareButton)
+        self.navigationItem.setRightBarButton(item, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -74,5 +81,18 @@ class SeriesDetailViewController: UIViewController,UIWebViewDelegate {
         self.navigationController?.navigationBar.topItem?.title = ""
     }
     
+    func getSeriesContent() {
+        Alamofire.request("\(Constants.API_URL)/series/view?seriesid=\(seriesID!)").responseJSON {
+            response in
+                if let json = response.result.value {
+                    let jsonObject = JSON(json)
+                    let shareTitle = jsonObject["data"]["title"].stringValue
+                    let shareContent = jsonObject["data"]["content"].stringValue
+                    let shareLink = jsonObject["data"]["share_link"].stringValue
+                    self.shareMessage = "\(shareTitle)|\(shareContent)\(shareLink)"
+                    self.shareImageURL = URL(string: jsonObject["data"]["image"].stringValue)
+                }
+        }
+    }
 
 }

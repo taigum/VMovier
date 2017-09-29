@@ -13,8 +13,10 @@ import Alamofire
 import SwiftyJSON
 import Kingfisher
 import SnapKit
+import JavaScriptCore
+import WebKit
 
-class VideoDetailViewController: UIViewController {
+class VideoDetailViewController: UIViewController,UIWebViewDelegate {
 
     @IBOutlet weak var player: BMPlayer!
     @IBOutlet weak var videoWebView: UIWebView!
@@ -24,9 +26,9 @@ class VideoDetailViewController: UIViewController {
     var postId: Int!
     var requestURL: String!
     var allVideo = [BMPlayerResourceDefinition]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.videoWebView.delegate = self
         player.backBlock = { [unowned self] (isFullScreen) in
             if isFullScreen == true {
                 return
@@ -48,6 +50,14 @@ class VideoDetailViewController: UIViewController {
         self.setWebView()
         self.navigationController?.navigationBar.isHidden = true
     }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        let id = videoWebView.stringByEvaluatingJavaScript(from:
+            "let linkArray = document.getElementsByClassName('pic new-view-link')[0].click = function(){return 0)}")
+        print("id:\(id)")
+    }
+    
+    
     
     func getVideo(){
         Alamofire.request("\(Constants.API_URL)/post/view?postid=\(String(postId))").responseJSON { response in

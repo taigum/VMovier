@@ -18,7 +18,7 @@ class ChannelViewController: UICollectionViewController,UICollectionViewDelegate
     
     var dataSource = [Channel]()
     let screenWidth = UIScreen.main.bounds.width
-    
+    var cateArray = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
@@ -36,6 +36,10 @@ class ChannelViewController: UICollectionViewController,UICollectionViewDelegate
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -43,12 +47,9 @@ class ChannelViewController: UICollectionViewController,UICollectionViewDelegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let viewController = segue.destination as! ChannelDetailViewController
         if (segue.identifier == "showChannelDetail") {
-            let cell = sender as? ChannelCell
-            var catename:String!
-            viewController.requestURL = "\(Constants.API_URL)/post/getPostInCate?size=10&cateid=\(String(describing: cell?.tag))"
-            let index = self.dataSource.index(where: {$0.channelID==cell?.tag})
-            catename = self.dataSource[index!].channelName
-            viewController.navigateTitle = catename
+            let cell = sender as! ChannelCell
+            viewController.requestURL = "\(Constants.API_URL)/post/getPostInCate?size=10&cateid=\(cell.channelID!)"
+            viewController.navigateTitle = cell.channelName.text
         }
     }
 
@@ -66,8 +67,7 @@ class ChannelViewController: UICollectionViewController,UICollectionViewDelegate
         let channelCoverUrl = URL(string: ChannelList.channelImage)
         cell.channelImage.kf.setImage(with: channelCoverUrl)
         cell.channelName.text = ChannelList.channelName
-        cell.tag = ChannelList.channelID
-        
+        cell.channelID = ChannelList.channelID
         cell.channelImage.frame.size = CGSize(width:screenWidth/2,height:screenWidth/2)
         cell.channelName.center = cell.channelImage.center
         return cell
@@ -156,7 +156,7 @@ class ChannelViewController: UICollectionViewController,UICollectionViewDelegate
                 for aChannel in jsonObject["data"]{
                     let channelName = "#\(aChannel.1["catename"])#"
                     let channelImage = aChannel.1["icon"].stringValue
-                    let channelID = aChannel.1["cateid"].intValue
+                    let channelID = aChannel.1["cateid"].stringValue
                     let channels = Channel(channelImage:channelImage,channelName:channelName,channelID: channelID)
                     self.dataSource.append(channels)
                 }

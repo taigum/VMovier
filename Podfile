@@ -7,5 +7,5 @@ target 'VMovie' do
     pod 'Kingfisher', '~> 3.0'
     pod 'TabPageViewController'
     pod 'BMPlayer'
-    pod 'WechatOpenSDK'
+    pod 'SwipeMenuViewController'
 end

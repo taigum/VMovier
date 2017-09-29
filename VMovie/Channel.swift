@@ -13,9 +13,9 @@ class Channel {
     
     let channelImage: String
     let channelName: String
-    let channelID: Int
+    let channelID: String
 
-    init(channelImage: String,channelName:String,channelID: Int) {
+    init(channelImage: String,channelName:String,channelID: String) {
         self.channelImage = channelImage
         self.channelName = channelName
         self.channelID = channelID

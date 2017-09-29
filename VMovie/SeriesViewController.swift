@@ -16,14 +16,11 @@ class SeriesViewController: UITableViewController {
     @IBOutlet var seriesView: UITableView!
     
     var dataSource = [Series]()
+    var refreshPage = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getSeries()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -46,8 +43,16 @@ class SeriesViewController: UITableViewController {
         return dataSource.count
     }
 
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastElement = dataSource.count - 1
+        if indexPath.row == lastElement {
+            refreshPage+=1
+            self.getSeries()
+        }
+    }
+    
     func getSeries(){
-        Alamofire.request("\(Constants.API_URL)/series/getList?p=1&size=10").responseJSON { response in
+        Alamofire.request("\(Constants.API_URL)/series/getList?p=\(refreshPage)").responseJSON { response in
             if let json = response.result.value{
                 let jsonObject = JSON(json)
                 for aSeries in jsonObject["data"] {

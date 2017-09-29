@@ -13,4 +13,5 @@ class ChannelCell: UICollectionViewCell {
     
     @IBOutlet weak var channelName: UILabel!
     
+    var channelID:String!
 }

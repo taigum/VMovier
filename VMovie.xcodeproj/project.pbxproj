@@ -18,7 +18,8 @@
 		51277AAA1F5545CA00CCF801 /* IndexPostViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51277AA91F5545CA00CCF801 /* IndexPostViewCell.swift */; };
 		51277AAC1F5546DD00CCF801 /* IndexPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51277AAB1F5546DD00CCF801 /* IndexPost.swift */; };
 		51277AAE1F55610100CCF801 /* bannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51277AAD1F55610100CCF801 /* bannerView.swift */; };
-		517909A31F5D40110064C951 /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517909A21F5D40110064C951 /* ChannelViewController.swift */; };
+		5135A4041F7BA77000D12EEE /* BackstageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5135A4031F7BA77000D12EEE /* BackstageListViewController.swift */; };
+		5135A4061F7DFE3800D12EEE /* BackstageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5135A4051F7DFE3800D12EEE /* BackstageDetailViewController.swift */; };
 		517909A51F5D465B0064C951 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517909A41F5D465B0064C951 /* ChannelCell.swift */; };
 		517909A71F5D47260064C951 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517909A61F5D47260064C951 /* Channel.swift */; };
 		517909A91F5E49A40064C951 /* ChannelDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517909A81F5E49A40064C951 /* ChannelDetailViewController.swift */; };
@@ -27,6 +28,9 @@
 		5180FD881F57A35B0017C6C4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 5180FD871F57A35B0017C6C4 /* .gitignore */; };
 		5180FD8C1F57B0010017C6C4 /* BMCustomPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5180FD8B1F57B0010017C6C4 /* BMCustomPlayer.swift */; };
 		5180FD8E1F57B2A10017C6C4 /* BMPlayerCustomControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5180FD8D1F57B2A10017C6C4 /* BMPlayerCustomControlView.swift */; };
+		51A033961F7B8FCC00A47CA4 /* BackstageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A033951F7B8FCC00A47CA4 /* BackstageCell.swift */; };
+		51A033981F7B920700A47CA4 /* Backstage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A033971F7B920700A47CA4 /* Backstage.swift */; };
+		51B0CF321F74DF4400E8233E /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517909A21F5D40110064C951 /* ChannelViewController.swift */; };
 		51B84F251F67939D0064A4A1 /* Series.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B84F241F67939D0064A4A1 /* Series.swift */; };
 		51B84F271F67C3F00064A4A1 /* SeriesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B84F261F67C3F00064A4A1 /* SeriesDetailViewController.swift */; };
 		51E412291F5EA64A0093C236 /* ChannelHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E412281F5EA64A0093C236 /* ChannelHeaderView.swift */; };
@@ -55,6 +59,8 @@
 		51277AA91F5545CA00CCF801 /* IndexPostViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexPostViewCell.swift; sourceTree = "<group>"; };
 		51277AAB1F5546DD00CCF801 /* IndexPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexPost.swift; sourceTree = "<group>"; };
 		51277AAD1F55610100CCF801 /* bannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bannerView.swift; sourceTree = "<group>"; };
+		5135A4031F7BA77000D12EEE /* BackstageListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackstageListViewController.swift; sourceTree = "<group>"; };
+		5135A4051F7DFE3800D12EEE /* BackstageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackstageDetailViewController.swift; sourceTree = "<group>"; };
 		517909A21F5D40110064C951 /* ChannelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
 		517909A41F5D465B0064C951 /* ChannelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		517909A61F5D47260064C951 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
@@ -64,6 +70,8 @@
 		5180FD871F57A35B0017C6C4 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		5180FD8B1F57B0010017C6C4 /* BMCustomPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMCustomPlayer.swift; sourceTree = "<group>"; };
 		5180FD8D1F57B2A10017C6C4 /* BMPlayerCustomControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerCustomControlView.swift; sourceTree = "<group>"; };
+		51A033951F7B8FCC00A47CA4 /* BackstageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackstageCell.swift; sourceTree = "<group>"; };
+		51A033971F7B920700A47CA4 /* Backstage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Backstage.swift; sourceTree = "<group>"; };
 		51B84F241F67939D0064A4A1 /* Series.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Series.swift; sourceTree = "<group>"; };
 		51B84F261F67C3F00064A4A1 /* SeriesDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeriesDetailViewController.swift; sourceTree = "<group>"; };
 		51E412281F5EA64A0093C236 /* ChannelHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelHeaderView.swift; sourceTree = "<group>"; };
@@ -135,6 +143,8 @@
 				51B84F261F67C3F00064A4A1 /* SeriesDetailViewController.swift */,
 				51E412321F60E63D0093C236 /* AlbumViewController.swift */,
 				51E412351F6145730093C236 /* BackStageViewController.swift */,
+				5135A4031F7BA77000D12EEE /* BackstageListViewController.swift */,
+				5135A4051F7DFE3800D12EEE /* BackstageDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -148,6 +158,7 @@
 				517909A61F5D47260064C951 /* Channel.swift */,
 				51E412301F60E52C0093C236 /* Album.swift */,
 				51B84F241F67939D0064A4A1 /* Series.swift */,
+				51A033971F7B920700A47CA4 /* Backstage.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -162,6 +173,7 @@
 				517909A41F5D465B0064C951 /* ChannelCell.swift */,
 				51E4122E1F60E3240093C236 /* AlbumCell.swift */,
 				51E412371F6643540093C236 /* SeriesCell.swift */,
+				51A033951F7B8FCC00A47CA4 /* BackstageCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -322,6 +334,9 @@
 				51277A971F53EC0F00CCF801 /* Constants.swift in Sources */,
 				51E412381F6643540093C236 /* SeriesCell.swift in Sources */,
 				51E412311F60E52C0093C236 /* Album.swift in Sources */,
+				5135A4041F7BA77000D12EEE /* BackstageListViewController.swift in Sources */,
+				5135A4061F7DFE3800D12EEE /* BackstageDetailViewController.swift in Sources */,
+				51A033981F7B920700A47CA4 /* Backstage.swift in Sources */,
 				517909A91F5E49A40064C951 /* ChannelDetailViewController.swift in Sources */,
 				51277AA41F55072800CCF801 /* DiscoverTabViewController.swift in Sources */,
 				5180FD861F56B04E0017C6C4 /* VideoDetailViewController.swift in Sources */,
@@ -332,15 +347,16 @@
 				517909A71F5D47260064C951 /* Channel.swift in Sources */,
 				517E6AF41F59603500830C47 /* BannerWebViewController.swift in Sources */,
 				51277AAA1F5545CA00CCF801 /* IndexPostViewCell.swift in Sources */,
+				51A033961F7B8FCC00A47CA4 /* BackstageCell.swift in Sources */,
 				5180FD8C1F57B0010017C6C4 /* BMCustomPlayer.swift in Sources */,
 				51277AAC1F5546DD00CCF801 /* IndexPost.swift in Sources */,
 				51E412361F6145730093C236 /* BackStageViewController.swift in Sources */,
-				517909A31F5D40110064C951 /* ChannelViewController.swift in Sources */,
 				51E4122B1F5FED480093C236 /* SeriesViewController.swift in Sources */,
 				51E412331F60E63D0093C236 /* AlbumViewController.swift in Sources */,
 				5180FD8E1F57B2A10017C6C4 /* BMPlayerCustomControlView.swift in Sources */,
 				51E412291F5EA64A0093C236 /* ChannelHeaderView.swift in Sources */,
 				51B84F251F67939D0064A4A1 /* Series.swift in Sources */,
+				51B0CF321F74DF4400E8233E /* ChannelViewController.swift in Sources */,
 				51E4122F1F60E3240093C236 /* AlbumCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
