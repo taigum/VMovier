@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import Kingfisher
 import SwiftyJSON
+import NVActivityIndicatorView
 
 class SeriesViewController: UITableViewController {
 
@@ -20,6 +21,8 @@ class SeriesViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let activityData = ActivityData()
+        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
         getSeries()
     }
 
@@ -66,6 +69,7 @@ class SeriesViewController: UITableViewController {
                     self.dataSource.append(SeriesList)
                 }
                 self.seriesView.reloadData()
+                NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
             }
         }
     }

@@ -26,7 +26,6 @@ class AlbumViewController: UITableViewController {
         super.viewDidLoad()
         self.getAlbumList()
         self.title = "专题"
-        
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -76,6 +75,7 @@ class AlbumViewController: UITableViewController {
     func getAlbumList(){
         Alamofire.request("\(Constants.API_URL)/post/getPostByTab?p=\(String(refreshPage))&size=10&tab=album").responseJSON { response in
             if let json = response.result.value{
+                
                 let jsonObject = JSON(json)
                 for aAlbum in jsonObject["data"] {
                     let albumImage = aAlbum.1["image"].stringValue

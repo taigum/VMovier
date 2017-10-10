@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import Kingfisher
+import NVActivityIndicatorView
 
 class BackstageListViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
 
@@ -137,6 +138,7 @@ class BackstageListViewController: UIViewController,UICollectionViewDelegate,UIC
                     self.dataSource.append(backstageList)
                 }
                 self.backstageView.reloadData()
+                NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
             }
             
         }

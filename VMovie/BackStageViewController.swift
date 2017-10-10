@@ -10,15 +10,17 @@ import UIKit
 import TabPageViewController
 import Alamofire
 import SwiftyJSON
+import NVActivityIndicatorView
 
 class BackStageViewController: UIViewController {
+    
     var myStringArray: [(String,Int)] = []
    
-    
-
     override func viewDidLoad() {
          myStringArray.append(("One", 1))
         super.viewDidLoad()
+        let activityData = ActivityData()
+        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
         self.title = "幕后文章"
         let tc = TabPageViewController.create()
         var currentTabIndex: Int? {

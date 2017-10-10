@@ -216,7 +216,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NUx-jC-zpE" customClass="BMCustomPlayer" customModule="VMovie" customModuleProvider="target">
+                            <view contentMode="scaleToFill" restorationIdentifier="BMCustomPlayer" translatesAutoresizingMaskIntoConstraints="NO" id="NUx-jC-zpE" customClass="BMCustomPlayer" customModule="VMovie" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="375" height="211"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -669,7 +669,7 @@
         <scene sceneID="XVf-H9-xhV">
             <objects>
                 <collectionViewController restorationIdentifier="ChannelDetailViewController" storyboardIdentifier="ChannelDetailViewController" id="Tiu-B7-nrb" customClass="ChannelDetailViewController" customModule="VMovie" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="ich-l5-0FC">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="ich-l5-0FC">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

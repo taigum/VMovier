@@ -64,8 +64,8 @@ class VideoDetailViewController: UIViewController,UIWebViewDelegate {
             if let json = response.result.value{
                 let jsonObject = JSON(json)
                 for aVideo in jsonObject["data"]["content"]["video"]{
-                    let BMPlayer = BMPlayerCustomControlView()
-                    BMPlayer.videoURL = aVideo.1["qiniu_url"].stringValue
+                    let BMPlayer = BMPlayerControlView() as? BMPlayerCustomControlView
+                    BMPlayer?.videoURL = aVideo.1["qiniu_url"].stringValue
                     for video1 in aVideo.1["progressive"]{
                         let videourl = URL(string: video1.1["qiniu_url"].stringValue)
                         let videodefinition = video1.1["profile_name"].stringValue
