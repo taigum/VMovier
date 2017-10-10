@@ -1,8 +1,9 @@
 # VMovier
 高仿VMovier IOS版
 
-<img src="https://github.com/shenmiaoling/VMovier/blob/master/screenshot/01.png" width="320" height="568" />
-<img src="https://github.com/shenmiaoling/VMovier/blob/master/screenshot/02.png" width="320" height="568" />
+# 界面截图
+
+<img src="https://github.com/shenmiaoling/VMovier/blob/master/screenshot/01.png" width="320" height="568" />    <img src="https://github.com/shenmiaoling/VMovier/blob/master/screenshot/02.png" width="320" height="568" />
 <img src="https://github.com/shenmiaoling/VMovier/blob/master/screenshot/03.png" width="320" height="568" />
 <img src="https://github.com/shenmiaoling/VMovier/blob/master/screenshot/04.png" width="320" height="568" />
 <img src="https://github.com/shenmiaoling/VMovier/blob/master/screenshot/05.png" width="320" height="568" />
